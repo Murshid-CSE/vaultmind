@@ -174,17 +174,12 @@ class BiometricService {
 
   // --- PRIVATE AUTHENTICATE ---
   // Triggers the OS biometric prompt and returns result.
+  // --- PRIVATE AUTHENTICATE ---
+  // Triggers the OS biometric prompt and returns result.
   Future<bool> _authenticate({required String reason}) async {
     try {
       return await _localAuth.authenticate(
         localizedReason: reason,
-        options: const AuthenticationOptions(
-          // Allow fallback to PIN/password if biometric fails.
-          biometricOnly: false,
-          // Re-authenticate every time — no sticky sessions.
-          stickyAuth: true,
-          useErrorDialogs: true,
-        ),
       );
     } catch (e) {
       return false;
